@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>bird-OR</title>
+	<link rel="shortcut icon" href="#">
+	<link rel="stylesheet" href="index.css">
+	<link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<div class="container">
+		<h1 class="align-center">bird-OR</h1>
+		<h2 class="align-center">the guide for birdwatchers in Oregon</h2>
+		<form id="js-form">
+			<label>Search county:</label>
+            <select id="js-county" name="County" required>
+                <option value="none" selected disabled hidden> Select an Option </option> 
+                <option value="001">Baker</option>
+                <option value="003">Benton</option>
+                <option value="005">Clackamas</option>
+                <option value="007">Clatsop</option>
+                <option value="009">Columbia</option>
+                <option value="011">Coos</option>
+                <option value="013">Crook</option>
+                <option value="015">Curry</option> 
+                <option value="017">Deschutes</option>
+                <option value="019">Douglas</option> 
+                <option value="021">Gilliam</option> 
+                <option value="023">Grant</option>
+                <option value="025">Harney</option> 
+                <option value="027">Hood River</option>
+                <option value="029">Jackson</option> 
+                <option value="031">Jefferson</option>
+                <option value="033">Josephine</option> 
+                <option value="035">Klamath</option>
+                <option value="037">Lake</option>  
+                <option value="039">Lane</option>
+                <option value="041">Lincoln</option>
+                <option value="043">Linn</option>
+                <option value="045">Malheur</option>
+                <option value="047">Marion</option>
+                <option value="049">Morrow</option>
+                <option value="051">Multnomah</option>
+                <option value="053">Polk</option>
+                <option value="055">Sherman</option>
+                <option value="057">Tillamook</option>
+                <option value="059">Umatilla</option>
+                <option value="061">Union</option>
+                <option value="063">Wallowa</option>
+                <option value="065">Wasco</option>
+                <option value="067">Washington</option>
+                <option value="071">Yamhill</option>
+            </select>
+            <input type="submit" role="button" class="btn" value="Go!">
+        </form>
+        <p id="js-error-message" class="error-message"></p>
+        <section id="results" class="hidden">
+            <div class="js-recently-spotted"><h3>Recently spotted in PLACEHOLDER county:</h3></div>
+            <ul id="results-list" class="results-list">
+            </ul>
+        </section>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+</body>
+</html>

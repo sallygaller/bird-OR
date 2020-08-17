@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-family: 'Carter One', cursive;
+  font-size: 56px;
+  margin-bottom: 0px;
+}
+
+h2 {
+  font-size: 18px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0px;
+}
+
+li {
+  margin-top: 10px;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+button, input[type="text"] {
+  padding: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.bird-img {
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 50px;
+  margin-left: 25px;
+}
+
+form {
+  text-align: center;
+}
+
+select {
+  padding: 5px;
+  margin: 10px;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+}
+
+p {
+  font-size: 16px;
+}
+
+.btn {
+  padding: 5px;
+  margin: 10px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  padding-right: 25px;
+  flex: 1;
+}
+
+.item-double {
+  display: flex;
+  flex-direction: column;
+  padding-right: 25px;
+  flex: 2;
+}
+
+.group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.align-center {
+  text-align: center;
+}
+
+@media all and (min-width: 800px) {
+  .group {
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+}
