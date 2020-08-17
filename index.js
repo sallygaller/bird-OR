@@ -6,7 +6,7 @@ function getResults(county) {
 
   fetch(url, {
     headers: {
-      "X-eBirdApiToken": "qkif81vn8bji"
+      'X-eBirdApiToken': 'qkif81vn8bji'
     }
   })
     .then(response => {
@@ -47,11 +47,11 @@ function findData(responseJson, countyName){
         $('#results-list').append(
           `<li>
           <h3>${responseJson[i].comName} <i>(${responseJson[i].sciName})</i></h3>
-          <div class="group">
-          <div class="item">
-          <img class="bird-img" src="https://farm${data[1].photos.photo[0].farm}.staticflickr.com/${data[1].photos.photo[0].server}/${data[1].photos.photo[0].id}_${data[1].photos.photo[0].secret}.jpg">
+          <div class='group'>
+          <div class='item'>
+          <img class='bird-img' src="https://farm${data[1].photos.photo[0].farm}.staticflickr.com/${data[1].photos.photo[0].server}/${data[1].photos.photo[0].id}_${data[1].photos.photo[0].secret}.jpg">
           </div>
-          <div class="item-double">
+          <div class='item-double'>
           <p>Learn more about the ${responseJson[i].comName} <a href="https://ebird.org/species/${responseJson[i].speciesCode}" target="_blank">here</a>.<br>
           Spotted at: ${birdLocation}</p>
           <p>Listen here:</p>
@@ -62,8 +62,6 @@ function findData(responseJson, countyName){
           $('#results').removeClass('hidden');
           $('#county-name').removeClass('hidden');
     })
-      // Log the data to the console
-      // You would do something with both sets of data here
     .catch(function (error) {
       // if there's an error, log it
       console.log(error);
@@ -76,18 +74,15 @@ function watchForm() {
     event.preventDefault();
     $('#county-name').addClass('hidden');
     $('#results-list').empty();
-    console.log("form submit!");
+    $('#js-error-message').empty();
     const county = $('#js-county').val();
-    console.log(county);
     if (county === null) {
       $('#js-error-message').text("Please select a county!");
-      $('form').reset();
+      document.getElementById('form').reset();
     }
-    const countyName = $("#js-county option:selected").text();
-    console.log(countyName);
+    const countyName = $('#js-county option:selected').text();
     const recentlySpotted = `<h3>Recently spotted in ${countyName} county:</h3>`;
-    // $("div.js-recently-spotted").replaceWith(recentlySpotted);
-    $( "div.js-recently-spotted").html(`<h3>Recently spotted in ${countyName} county:</h3>`);
+    $('div.js-recently-spotted').html(`<h3>Recently spotted in ${countyName} county:</h3>`);
     getResults(county);
   });
 }
