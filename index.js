@@ -1,5 +1,6 @@
 'use strict';
 
+
 function getResults(county) {
   const url = `https://api.ebird.org/v2/data/obs/US-OR-${county}/recent/?maxResults=20`;
   console.log(url)
@@ -29,7 +30,7 @@ function findData(responseJson, countyName){
     birdSearch = birdSearch.replace(/[^a-zA-Z ]/g, "");
     birdSearch = encodeURIComponent(birdSearch.trim());
     const urls = [
-      `https://freesound.org/apiv2/search/text/?query=${birdSearch}%20bird&fields=name,previews&token=YELG5NEx2kxbdqcv0DxxOq74XLrco0UtF9m5mzYH`,
+      `https://freesound.org/apiv2/search/text/?query=${birdSearch}%20bird&fields=name,previews&hotspot=true&token=YELG5NEx2kxbdqcv0DxxOq74XLrco0UtF9m5mzYH`,
       `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=417cf3b30db7ab7da2e49b9d14490bd0&format=json&nojsoncallback=1&text=${birdSearch}%20wildlife&content_type=1&extras=url_o&per_page=5`
     ]
     Promise.all(urls.map(url => fetch(url))).then(function (responses) {
@@ -76,12 +77,7 @@ function watchForm() {
     $('#results-list').empty();
     $('#js-error-message').empty();
     const county = $('#js-county').val();
-    if (county === null) {
-      $('#js-error-message').text("Please select a county!");
-      document.getElementById('form').reset();
-    }
     const countyName = $('#js-county option:selected').text();
-    const recentlySpotted = `<h3>Recently spotted in ${countyName} county:</h3>`;
     $('div.js-recently-spotted').html(`<h3>Recently spotted in ${countyName} county:</h3>`);
     getResults(county);
   });
