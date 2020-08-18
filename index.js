@@ -1,5 +1,80 @@
 'use strict';
 
+const options = [
+  {"id": "001",
+  "county": "Baker"},
+  {"id": "003",
+  "county": "Benton"},
+  {"id": "005",
+  "county": "Clackamas"},
+  {"id": "007",
+  "county": "Clatsop"},
+  {"id": "009",
+  "county": "Columbia"},
+  {"id": "011",
+  "county": "Coos"},
+  {"id": "013",
+  "county": "Crook"},
+  {"id": "015",
+  "county": "Curry"},
+  {"id": "017",
+  "county": "Deschutes"},
+  {"id": "019",
+  "county": "Douglas"},
+  {"id": "021",
+  "county": "Gilliam"},
+  {"id": "023",
+  "county": "Grant"},
+  {"id": "025",
+  "county": "Harney"},
+  {"id": "027",
+  "county": "Hood River"},
+  {"id": "029",
+  "county": "Jackson"},
+  {"id": "031",
+  "county": "Jefferson"},
+  {"id": "033",
+  "county": "Josephine"},
+  {"id": "035",
+  "county": "Klamath"},
+  {"id": "037",
+  "county": "Lake"},
+  {"id": "039",
+  "county": "Lane"},
+  {"id": "041",
+  "county": "Lincoln"},
+  {"id": "043",
+  "county": "Linn"},
+  {"id": "045",
+  "county": "Malheur"},
+  {"id": "047",
+  "county": "Marion"},
+  {"id": "049",
+  "county": "Morrow"},
+  {"id": "051",
+  "county": "Multnomah"},
+  {"id": "053",
+  "county": "Polk"},
+  {"id": "055",
+  "county": "Sherman"},
+  {"id": "057",
+  "county": "Tillamook"},
+  {"id": "059",
+  "county": "Umatilla"},
+  {"id": "061",
+  "county": "Union"},
+  {"id": "063",
+  "county": "Wallowa"},
+  {"id": "065",
+  "county": "Wasco"},
+  {"id": "067",
+  "county": "Washington"},
+  {"id": "069",
+  "county": "Wheeler"},
+  {"id": "071",
+  "county": "Yamhill"},
+]
+
 
 function getResults(county) {
   const url = `https://api.ebird.org/v2/data/obs/US-OR-${county}/recent/?maxResults=20`;
@@ -70,7 +145,15 @@ function findData(responseJson, countyName){
     }
 }
 
+function renderCounties(options) {
+for (let i = 0; i < options.length; i++){
+  $('#js-county').append(
+    `<option value=${options[i].id}>${options[i].county}</option>`
+  )}
+}
+
 function watchForm() {
+  renderCounties(options);
   $('form').submit(event => {
     event.preventDefault();
     $('#county-name').addClass('hidden');
