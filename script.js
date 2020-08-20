@@ -132,14 +132,14 @@ function findData(responseJson, countyName){
       spottedDate = (month + 1) + "/" + date + "/" + year;
       $('#results-list').append(
         `<li>
-          <h3 class="f-size-17">${responseJson[i].comName} <i>(${responseJson[i].sciName})</i></h3>
+          <h3 class="bird-name">${responseJson[i].comName} <i>(${responseJson[i].sciName})</i></h3>
           <div class='group'>
             <div class='item'>
               <img class='bird-img' src="https://farm${data[1].photos.photo[0].farm}.staticflickr.com/${data[1].photos.photo[0].server}/${data[1].photos.photo[0].id}_${data[1].photos.photo[0].secret}.jpg">
             </div>
             <div class='item-double'>
-              <p>Spotted at <strong>${birdLocation}</strong> on ${spottedDate}.<br>
-              Listen here:</p>
+              <p>Spotted at <strong>${birdLocation}</strong> on <strong>${spottedDate}</strong>.</p>
+              <p>Listen here:</p>
               <audio controls src="${data[0].results[0].previews["preview-hq-mp3"]}"> Your browser does not support the <code>audio</code> element.</audio>
               <p class="f-size-14">Learn more about the ${responseJson[i].comName} <a href="https://ebird.org/species/${responseJson[i].speciesCode}" target="_blank">here</a>.<br>
               </div>
@@ -179,13 +179,13 @@ function watchForm() {
 $(window).scroll(function() {
   var height = $(window).scrollTop();
   if (height > 100) {
-      $('#back2Top').fadeIn();
+      $('#scrollToTop').fadeIn();
   } else {
-      $('#back2Top').fadeOut();
+      $('#scrollToTop').fadeOut();
   }
 });
 $(document).ready(function() {
-  $("#back2Top").click(function(event) {
+  $("#scrollToTop").click(function(event) {
       event.preventDefault();
       $("html, body").animate({ scrollTop: 0 }, "slow");
       return false;
