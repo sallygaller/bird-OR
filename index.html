@@ -17,14 +17,15 @@
 		<h2 class="align-center">the guide for birdwatchers in Oregon</h2>
 		<form id="js-form">
 			<label>Search county:</label>
-      <select id="js-county" name="County" required>
+      <select id="js-county" name="county" required>
         <option value="" selected disabled hidden> Select an Option </option> 
       </select>
       <input type="submit" class="btn" value="Go!">
     </form>
+    <div id="js-loader" class="loader hidden"><img class="loader-img" src="images/bird-loader.png"></div>
     <p id="js-error-message" class="error-message"></p>
-    <section id="results" class="hidden">
-      <div class="js-recently-spotted"><h3>Recently spotted in PLACEHOLDER county:</h3></div>
+    <section id="results" class="results hidden">
+      <div class="js-recently-spotted"></div>
       <ul id="results-list" class="results-list">
       </ul>
     </section>

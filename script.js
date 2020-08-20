@@ -76,6 +76,7 @@ const options = [
 ]
 
 function getResults(county) {
+  $('.loader').removeClass('hidden');
   const url = `https://api.ebird.org/v2/data/obs/US-OR-${county}/recent/?maxResults=20`;
   console.log(url)
 
@@ -83,11 +84,14 @@ function getResults(county) {
     headers: {
       'X-eBirdApiToken': 'qkif81vn8bji'
     }
-  })
+  }
+  )
   .then(response => {
     if (response.ok) {
+      $('.loader').addClass('hidden');
       return response.json();
       }
+    $('.loader').addClass('hidden');
     throw new Error(response.statusText);
   })
   .then(responseJson => 

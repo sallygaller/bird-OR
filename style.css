@@ -8,6 +8,16 @@ h1 {
   margin-bottom: 0px;
 }
 
+.loader {
+  width: 120px;
+  height: 120px;
+  margin: auto;
+}
+
+.loader-img {
+  margin: auto;
+}
+
 h2 {
   font-size: 18px;
   margin-top: 0px;
@@ -23,8 +33,17 @@ li {
   margin-top: 10px;
 }
 
+.results-list {
+  background-color: #D9D6D2;
+  padding: 25px;
+  border-radius: 50px;
+  margin: 0 auto;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
+  background: url('images/background-img.jpg');
+  background-size: 150%;
 }
 
 button, input[type="text"] {
@@ -53,7 +72,6 @@ button:hover {
   max-width: 300px;
   max-height: 300px;
   border-radius: 50px;
-  margin-left: 25px;
 }
 
 form {
