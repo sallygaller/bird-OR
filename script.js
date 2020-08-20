@@ -108,7 +108,7 @@ function findData(responseJson, countyName){
     birdSearch = birdSearch.replace(/[^a-zA-Z ]/g, "");
     birdSearch = encodeURIComponent(birdSearch.trim());
     const urls = [
-      `https://freesound.org/apiv2/search/text/?query=${birdSearch}%20bird&fields=name,previews&hotspot=true&token=YELG5NEx2kxbdqcv0DxxOq74XLrco0UtF9m5mzYH`,
+      `https://freesound.org/apiv2/search/text/?query=${birdSearch}%20bird&fields=name,previews&token=8qV0gUV3bBQFZoZKTvNIcr632DWPLH0xtyUisuKt`,
       `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=417cf3b30db7ab7da2e49b9d14490bd0&format=json&nojsoncallback=1&text=${birdSearch}%20wildlife&content_type=1&extras=url_o&per_page=5`
     ]
     Promise.all(urls.map(url => fetch(url)))
@@ -123,21 +123,26 @@ function findData(responseJson, countyName){
       // console.log(data[1].photos.photo[0]);
       let birdLocation = "";
       if (responseJson[i].locationPrivate === true) {
-        birdLocation = "Private location"
+        birdLocation = "a private location"
       } else {birdLocation = responseJson[i].locName}
+      let spottedDate = new Date(responseJson[i].obsDt);
+      let date = spottedDate.getDate();
+      let month = spottedDate.getMonth(); //Be careful! January is 0 not 1
+      let year = spottedDate.getFullYear();
+      spottedDate = (month + 1) + "/" + date + "/" + year;
       $('#results-list').append(
         `<li>
-          <h3>${responseJson[i].comName} <i>(${responseJson[i].sciName})</i></h3>
+          <h3 class="f-size-17">${responseJson[i].comName} <i>(${responseJson[i].sciName})</i></h3>
           <div class='group'>
             <div class='item'>
               <img class='bird-img' src="https://farm${data[1].photos.photo[0].farm}.staticflickr.com/${data[1].photos.photo[0].server}/${data[1].photos.photo[0].id}_${data[1].photos.photo[0].secret}.jpg">
             </div>
             <div class='item-double'>
-              <p>Learn more about the ${responseJson[i].comName} <a href="https://ebird.org/species/${responseJson[i].speciesCode}" target="_blank">here</a>.<br>
-              Spotted at: ${birdLocation}</p>
-              <p>Listen here:</p>
+              <p>Spotted at <strong>${birdLocation}</strong> on ${spottedDate}.<br>
+              Listen here:</p>
               <audio controls src="${data[0].results[0].previews["preview-hq-mp3"]}"> Your browser does not support the <code>audio</code> element.</audio>
-            </div>
+              <p class="f-size-14">Learn more about the ${responseJson[i].comName} <a href="https://ebird.org/species/${responseJson[i].speciesCode}" target="_blank">here</a>.<br>
+              </div>
           </div>
         </li>`)
         $('#results').removeClass('hidden');
@@ -166,10 +171,27 @@ function watchForm() {
     $('#js-error-message').empty();
     const county = $('#js-county').val();
     const countyName = $('#js-county option:selected').text();
-    $('div.js-recently-spotted').html(`<h3>Recently spotted in ${countyName} county:</h3>`);
+    $('div.js-recently-spotted').html(`<h3 class="f-size-18">Recently spotted in ${countyName} county:</h3>`);
     getResults(county);
   });
 }
+
+$(window).scroll(function() {
+  var height = $(window).scrollTop();
+  if (height > 100) {
+      $('#back2Top').fadeIn();
+  } else {
+      $('#back2Top').fadeOut();
+  }
+});
+$(document).ready(function() {
+  $("#back2Top").click(function(event) {
+      event.preventDefault();
+      $("html, body").animate({ scrollTop: 0 }, "slow");
+      return false;
+  });
+
+});
 
 $(watchForm);
 

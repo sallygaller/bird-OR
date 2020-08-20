@@ -8,21 +8,27 @@
 	<title>bird-OR</title>
 	<link rel="shortcut icon" href="#">
 	<link rel="stylesheet" href="style.css">
-	<link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Roboto&display=swap" rel="stylesheet">
 </head>
 
 <body>
 	<div class="container">
-		<h1 class="align-center">bird-OR</h1>
-		<h2 class="align-center">the guide for birdwatchers in Oregon</h2>
+    <div class='thetop'></div>
+    <section class="header">
+      <h1 class="align-center">bird-OR</h1>
+      <h2 class="sub-title align-center">The Guide for Birdwatchers in Oregon</h2>
+    </section>
+    <section class="m-top-75">
+      <p class="align-center">See the birds that were spotted in any Oregonian county in the last 30 days.<br>
 		<form id="js-form">
-			<label>Search county:</label>
+			<label>County:</label>
       <select id="js-county" name="county" required>
         <option value="" selected disabled hidden> Select an Option </option> 
       </select>
-      <input type="submit" class="btn" value="Go!">
+      <input type="submit" class="btn" value="Search!">
     </form>
     <div id="js-loader" class="loader hidden"><img class="loader-img" src="images/bird-loader.png"></div>
+  </section>
     <p id="js-error-message" class="error-message"></p>
     <section id="results" class="results hidden">
       <div class="js-recently-spotted"></div>
@@ -30,6 +36,9 @@
       </ul>
     </section>
   </div>
+  <footer>
+    <a id="back2Top" title="Back to top" href="#">&#10148;</a>
+  </footer>
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
   <script src="script.js"></script>
 </body>

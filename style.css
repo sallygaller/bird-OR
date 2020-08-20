@@ -4,24 +4,52 @@
 
 h1 {
   font-family: 'Carter One', cursive;
-  font-size: 56px;
+  font-size: 72px;
   margin-bottom: 0px;
 }
 
-.loader {
-  width: 120px;
-  height: 120px;
-  margin: auto;
+.sub-title {
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+
+.header {
+  margin: 10px;
+}
+
+@keyframes slidein {
+  0%   {top: 0px; left: 25%}
+  100% {top: 0px; left: 75%}
+}
+
+.m-top-75 {
+  margin-top: 75px;
+}
+
+.f-size-18 {
+  font-size: 18px;
+}
+
+.f-size-17 {
+  font-size: 17px;
 }
 
 .loader-img {
-  margin: auto;
-}
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  position: relative;
+  animation: slidein 3s infinite;
+} 
+
 
 h2 {
   font-size: 18px;
   margin-top: 0px;
   margin-bottom: 10px;
+}
+
+.f-size-14 {
+  font-size: 14px;
 }
 
 ul {
@@ -36,14 +64,14 @@ li {
 .results-list {
   background-color: #D9D6D2;
   padding: 25px;
-  border-radius: 50px;
+  border-radius: 10px;
   margin: 0 auto;
 }
 
 body {
   font-family: 'Roboto', sans-serif;
   background: url('images/background-img.jpg');
-  background-size: 150%;
+  background-size: 200%;
 }
 
 button, input[type="text"] {
@@ -71,7 +99,7 @@ button:hover {
 .bird-img {
   max-width: 300px;
   max-height: 300px;
-  border-radius: 50px;
+  border-radius: 10px;
 }
 
 form {
@@ -92,6 +120,8 @@ p {
 .btn {
   padding: 5px;
   margin: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
 }
 
 .item {
@@ -105,18 +135,45 @@ p {
   display: flex;
   flex-direction: column;
   padding-right: 25px;
-  flex: 2;
+  flex: 3;
 }
 
 .group {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  /* align-items: center; */
   margin-bottom: 50px;
 }
 
 .align-center {
   text-align: center;
+}
+
+#back2Top {
+  width: 40px;
+  line-height: 40px;
+  overflow: hidden;
+  z-index: 999;
+  display: none;
+  cursor: pointer;
+  -moz-transform: rotate(270deg);
+  -webkit-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+  position: fixed;
+  bottom: 50px;
+  right: 0;
+  background-color: #DDD;
+  color: #555;
+  text-align: center;
+  font-size: 30px;
+  text-decoration: none;
+}
+
+#back2Top:hover {
+  background-color: #DDF;
+  color: #000;
 }
 
 @media all and (min-width: 800px) {
