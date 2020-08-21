@@ -1,78 +1,78 @@
 'use strict';
 
 const options = [
-  {"id": "001",
-  "county": "Baker"},
-  {"id": "003",
-  "county": "Benton"},
-  {"id": "005",
-  "county": "Clackamas"},
-  {"id": "007",
-  "county": "Clatsop"},
-  {"id": "009",
-  "county": "Columbia"},
-  {"id": "011",
-  "county": "Coos"},
-  {"id": "013",
-  "county": "Crook"},
-  {"id": "015",
-  "county": "Curry"},
-  {"id": "017",
-  "county": "Deschutes"},
-  {"id": "019",
-  "county": "Douglas"},
-  {"id": "021",
-  "county": "Gilliam"},
-  {"id": "023",
-  "county": "Grant"},
-  {"id": "025",
-  "county": "Harney"},
-  {"id": "027",
-  "county": "Hood River"},
-  {"id": "029",
-  "county": "Jackson"},
-  {"id": "031",
-  "county": "Jefferson"},
-  {"id": "033",
-  "county": "Josephine"},
-  {"id": "035",
-  "county": "Klamath"},
-  {"id": "037",
-  "county": "Lake"},
-  {"id": "039",
-  "county": "Lane"},
-  {"id": "041",
-  "county": "Lincoln"},
-  {"id": "043",
-  "county": "Linn"},
-  {"id": "045",
-  "county": "Malheur"},
-  {"id": "047",
-  "county": "Marion"},
-  {"id": "049",
-  "county": "Morrow"},
-  {"id": "051",
-  "county": "Multnomah"},
-  {"id": "053",
-  "county": "Polk"},
-  {"id": "055",
-  "county": "Sherman"},
-  {"id": "057",
-  "county": "Tillamook"},
-  {"id": "059",
-  "county": "Umatilla"},
-  {"id": "061",
-  "county": "Union"},
-  {"id": "063",
-  "county": "Wallowa"},
-  {"id": "065",
-  "county": "Wasco"},
-  {"id": "067",
-  "county": "Washington"},
-  {"id": "069",
-  "county": "Wheeler"},
-  {"id": "071",
-  "county": "Yamhill"},
+  {'id': '001',
+  'county': 'Baker'},
+  {'id': '003',
+  'county': 'Benton'},
+  {'id': '005',
+  'county': 'Clackamas'},
+  {'id': '007',
+  'county': 'Clatsop'},
+  {'id': '009',
+  'county': 'Columbia'},
+  {'id': '011',
+  'county': 'Coos'},
+  {'id': '013',
+  'county':'Crook'},
+  {'id': '015',
+  'county': 'Curry'},
+  {'id': '017',
+  'county': 'Deschutes'},
+  {'id': '019',
+  'county': 'Douglas'},
+  {'id': '021',
+  'county': 'Gilliam'},
+  {'id': '023',
+  'county': 'Grant'},
+  {'id': '025',
+  'county': 'Harney'},
+  {'id': '027',
+  'county': 'Hood River'},
+  {'id': '029',
+  'county': 'Jackson'},
+  {'id': '031',
+  'county': 'Jefferson'},
+  {'id': '033',
+  'county': 'Josephine'},
+  {'id': '035',
+  'county': 'Klamath'},
+  {'id': '037',
+  'county': 'Lake'},
+  {'id': '039',
+  'county': 'Lane'},
+  {'id': '041',
+  'county': 'Lincoln'},
+  {'id': '043',
+  'county':'Linn'},
+  {'id': '045',
+  'county': 'Malheur'},
+  {'id': '047',
+  'county': 'Marion'},
+  {'id': '049',
+  'county': 'Morrow'},
+  {'id': '051',
+  'county': 'Multnomah'},
+  {'id': '053',
+  'county': 'Polk'},
+  {'id': '055',
+  'county': 'Sherman'},
+  {'id': '057',
+  'county': 'Tillamook'},
+  {'id': '059',
+  'county': 'Umatilla'},
+  {'id': '061',
+  'county': 'Union'},
+  {'id': '063',
+  'county': 'Wallowa'},
+  {'id': '065',
+  'county': 'Wasco'},
+  {'id': '067',
+  'county': 'Washington'},
+  {'id': '069',
+  'county': 'Wheeler'},
+  {'id': '071',
+  'county': 'Yamhill'},
 ]
 
 function getResults(county) {
@@ -106,7 +106,7 @@ function findData(responseJson, countyName){
   console.log(responseJson)
   for (let i = 0; i < responseJson.length; i++) {
     let birdSearch = responseJson[i].comName;
-    birdSearch = birdSearch.replace(/[^a-zA-Z ]/g, "");
+    birdSearch = birdSearch.replace(/[^a-zA-Z ]/g, '');
     birdSearch = encodeURIComponent(birdSearch.trim());
     const urls = [
       `https://freesound.org/apiv2/search/text/?query=${birdSearch}%20bird&fields=name,previews&token=8qV0gUV3bBQFZoZKTvNIcr632DWPLH0xtyUisuKt`,
@@ -122,27 +122,27 @@ function findData(responseJson, countyName){
     .then(function (data) {
       // console.log(data[0].results[0]);
       // console.log(data[1].photos.photo[0]);
-      let birdLocation = "";
+      let birdLocation = '';
       if (responseJson[i].locationPrivate === true) {
-        birdLocation = "a private location"
+        birdLocation = 'a private location'
       } else {birdLocation = responseJson[i].locName}
       let spottedDate = new Date(responseJson[i].obsDt);
       let date = spottedDate.getDate();
       let month = spottedDate.getMonth(); 
       let year = spottedDate.getFullYear();
-      spottedDate = (month + 1) + "/" + date + "/" + year;
+      spottedDate = (month + 1) + '/' + date + '/' + year;
       $('#results-list').append(
         `<li>
-          <h3 class="bird-name">${responseJson[i].comName} <i>(${responseJson[i].sciName})</i></h3>
+          <h3 class='bird-name'>${responseJson[i].comName} <i>(${responseJson[i].sciName})</i></h3>
           <div class='group'>
             <div class='item'>
-              <img class='bird-img' src="https://farm${data[1].photos.photo[0].farm}.staticflickr.com/${data[1].photos.photo[0].server}/${data[1].photos.photo[0].id}_${data[1].photos.photo[0].secret}.jpg">
+              <img class='bird-img' alt='Photograph of bird species' src='https://farm${data[1].photos.photo[0].farm}.staticflickr.com/${data[1].photos.photo[0].server}/${data[1].photos.photo[0].id}_${data[1].photos.photo[0].secret}.jpg'>
             </div>
             <div class='item-double'>
               <p>Spotted at <strong>${birdLocation}</strong> on <strong>${spottedDate}</strong>.</p>
               <p>Listen here:</p>
-              <audio controls src="${data[0].results[0].previews["preview-hq-mp3"]}"> Your browser does not support the <code>audio</code> element.</audio>
-              <p class="f-size-14">Learn more about the ${responseJson[i].comName} <a href="https://ebird.org/species/${responseJson[i].speciesCode}" target="_blank">here</a>.<br>
+              <audio controls src='${data[0].results[0].previews['preview-hq-mp3']}'>Your browser does not support the <code>audio</code> element.</audio>
+              <p class='f-size-14'>Learn more about the ${responseJson[i].comName} <a href='https://ebird.org/species/${responseJson[i].speciesCode}' target='_blank'>here</a>.<br>
               </div>
           </div>
         </li>`)
@@ -172,7 +172,7 @@ function watchForm() {
     $('#js-error-message').empty();
     const county = $('#js-county').val();
     const countyName = $('#js-county option:selected').text();
-    $('div.js-recently-spotted').html(`<h3 class="f-size-18">Recently spotted in ${countyName} county:</h3>`);
+    $('div.js-recently-spotted').html(`<h3 class='f-size-18'>Recently spotted in ${countyName} county:</h3>`);
     getResults(county);
   });
 }
@@ -187,9 +187,9 @@ $(window).scroll(function() {
 });
 
 $(function() {
-  $("#scrollToTop").click(function(event) {
+  $('#scrollToTop').click(function(event) {
       event.preventDefault();
-      $("html, body").animate({ scrollTop: 0 }, "slow");
+      $('html, body').animate({ scrollTop: 0 }, 'slow');
       return false;
   });
 
