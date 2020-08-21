@@ -103,6 +103,7 @@ function getResults(county) {
 }
 
 function findData(responseJson, countyName){
+  console.log(responseJson)
   for (let i = 0; i < responseJson.length; i++) {
     let birdSearch = responseJson[i].comName;
     birdSearch = birdSearch.replace(/[^a-zA-Z ]/g, "");
@@ -127,7 +128,7 @@ function findData(responseJson, countyName){
       } else {birdLocation = responseJson[i].locName}
       let spottedDate = new Date(responseJson[i].obsDt);
       let date = spottedDate.getDate();
-      let month = spottedDate.getMonth(); //Be careful! January is 0 not 1
+      let month = spottedDate.getMonth(); 
       let year = spottedDate.getFullYear();
       spottedDate = (month + 1) + "/" + date + "/" + year;
       $('#results-list').append(
@@ -177,14 +178,15 @@ function watchForm() {
 }
 
 $(window).scroll(function() {
-  var height = $(window).scrollTop();
+  let height = $(window).scrollTop();
   if (height > 100) {
       $('#scrollToTop').fadeIn();
   } else {
       $('#scrollToTop').fadeOut();
   }
 });
-$(document).ready(function() {
+
+$(function() {
   $("#scrollToTop").click(function(event) {
       event.preventDefault();
       $("html, body").animate({ scrollTop: 0 }, "slow");
