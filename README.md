@@ -6,7 +6,11 @@ bird-OR was designed with novice birdwatchers in mind: they want to broaden thei
 
 ## Screenshots
 Home page:
+![home](Screenshots/Home-page.PNG)
 
+Results page:
+![results](Screenshots/results.PNG)
+![results-list](Screenshots/results-list.PNG)
 
 ## How to Use
 The user begins by selecting a county in Oregon. They are provided with a list of birds that have been spotted in the county within the last 30 days.
