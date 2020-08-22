@@ -1,6 +1,9 @@
 # bird-OR
 An application for birdwatchers located in Oregon. The user can search any county in Oregon and see birds that have been spotted there over the last 30 days. 
 
+## Link
+https://sallygaller.github.io/bird-OR/
+
 ## About 
 bird-OR was designed with novice birdwatchers in mind: they want to broaden their knowledge of different bird species located in their county, and they want to know what to look and listen for when they go birdwatching. So much of birdwatching is actually “bird-listening” - i.e. birdwatchers often hear more birds than they see. By providing both snippets of the bird’s song and a picture of the bird, the user has a higher chance of identifying unfamiliar birds in their region and remembering them.   
 
