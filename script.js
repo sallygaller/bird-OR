@@ -125,7 +125,7 @@ function findData(responseJson){
         birdLocation = 'a private location'
       } else {birdLocation = responseJson[i].locName}
       // format date 
-      let spottedDate = new Date(responseJson[i].obsDt);
+      let spottedDate = new Date(responseJson[i].obsDt.replace(' ', 'T'));
       let date = spottedDate.getDate();
       let month = spottedDate.getMonth(); 
       let year = spottedDate.getFullYear();
