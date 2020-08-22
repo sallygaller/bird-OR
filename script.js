@@ -78,14 +78,11 @@ const options = [
 function getResults(county) {
   $('.loader').removeClass('hidden');
   const url = `https://api.ebird.org/v2/data/obs/US-OR-${county}/recent/?maxResults=20`;
-  console.log(url)
-
   fetch(url, {
     headers: {
       'X-eBirdApiToken': 'qkif81vn8bji'
     }
-  }
-  )
+  })
   .then(response => {
     if (response.ok) {
       $('.loader').addClass('hidden');
@@ -102,15 +99,15 @@ function getResults(county) {
     });
 }
 
-function findData(responseJson, countyName){
-  console.log(responseJson)
+function findData(responseJson){
   for (let i = 0; i < responseJson.length; i++) {
+    // format bird names to search other APIs
     let birdSearch = responseJson[i].comName;
     birdSearch = birdSearch.replace(/[^a-zA-Z ]/g, '');
     birdSearch = encodeURIComponent(birdSearch.trim());
     const urls = [
       `https://freesound.org/apiv2/search/text/?query=${birdSearch}%20bird&fields=name,previews&token=8qV0gUV3bBQFZoZKTvNIcr632DWPLH0xtyUisuKt`,
-      `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=417cf3b30db7ab7da2e49b9d14490bd0&format=json&nojsoncallback=1&text=${birdSearch}%20wildlife&content_type=1&extras=url_o&per_page=5`
+      `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=417cf3b30db7ab7da2e49b9d14490bd0&format=json&nojsoncallback=1&text=${birdSearch}%20wildlife%bird&content_type=1&extras=url_o&per_page=5`
     ]
     Promise.all(urls.map(url => fetch(url)))
     .then(function (responses) {
@@ -120,12 +117,14 @@ function findData(responseJson, countyName){
       }));
     })
     .then(function (data) {
-      // console.log(data[0].results[0]);
-      // console.log(data[1].photos.photo[0]);
+      // filter Flickr data for photos with URLs 
+      let getPhotosWithUrls = data[1].photos.photo.filter((photo) => photo.url_o)
+      // format bird location 
       let birdLocation = '';
       if (responseJson[i].locationPrivate === true) {
         birdLocation = 'a private location'
       } else {birdLocation = responseJson[i].locName}
+      // format date 
       let spottedDate = new Date(responseJson[i].obsDt);
       let date = spottedDate.getDate();
       let month = spottedDate.getMonth(); 
@@ -136,7 +135,7 @@ function findData(responseJson, countyName){
           <h3 class='bird-name'>${responseJson[i].comName} <i>(${responseJson[i].sciName})</i></h3>
           <div class='group'>
             <div class='item'>
-              <img class='bird-img' alt='Photograph of bird species' src='https://farm${data[1].photos.photo[0].farm}.staticflickr.com/${data[1].photos.photo[0].server}/${data[1].photos.photo[0].id}_${data[1].photos.photo[0].secret}.jpg'>
+             <img class='bird-img' alt='Photograph of bird species' src='${getPhotosWithUrls[0].url_o}'>
             </div>
             <div class='item-double'>
               <p>Spotted at <strong>${birdLocation}</strong> on <strong>${spottedDate}</strong>.</p>
@@ -177,6 +176,7 @@ function watchForm() {
   });
 }
 
+//scroll to top 
 $(window).scroll(function() {
   let height = $(window).scrollTop();
   if (height > 100) {
@@ -192,7 +192,6 @@ $(function() {
       $('html, body').animate({ scrollTop: 0 }, 'slow');
       return false;
   });
-
 });
 
 $(watchForm);
